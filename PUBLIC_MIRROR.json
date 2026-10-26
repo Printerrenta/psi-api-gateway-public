@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "Printerrenta/psi-api-gateway",
+  "sourceCommit": "8a38963eb20693dbec0a515ea63888f33426a4de",
+  "sourceBranch": "main",
+  "history": "Independent public snapshots; no private Git history",
+  "files": [
+    {
+      "path": ".dockerignore",
+      "sha256": "468f4a2974ffcb75eb4e8d9a1c02ac254e208327e2751a8d2925a79db175f4fc"
+    },
+    {
+      "path": ".github/workflows/public-safety.yml",
+      "sha256": "b2496e36f4d1ef71234ffe5b349a9c449a8f45c575de594b23a41ddb3badebf7"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "sha256": "a3a3b6cbfe1080862c0587b2b242c08682c6ce8bb6710d99536014fc178d48a5"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "d1982c33f2569ecce13df2be7755938cf07ca2b4ba385409d1aeda80da9794c4"
+    },
+    {
+      "path": ".mvn/wrapper/maven-wrapper.properties",
+      "sha256": "8f2a4438810348270d9d98f8d6d530541ddb7271e373db207e8ac381e0e35b62"
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "8fac470a60c205a72f522711aaac1b68e1df0eb36d6286537a13f90f86c9b09b"
+    },
+    {
+      "path": "README.md",
+      "sha256": "00545edbf92fbed465901f01dab56cddf989e08d4cdf7193acd28b98dc2b413d"
+    },
+    {
+      "path": "mvnw",
+      "sha256": "cae96cef89ebea3531221f4ae17c23cf8edf67d00eae8306d4186ae1bbed4d02"
+    },
+    {
+      "path": "mvnw.cmd",
+      "sha256": "4a361e1374a3e5ad6d03e18e9adc0cf181ac5058ac6203b76f0ba3b456b56481"
+    },
+    {
+      "path": "package.json",
+      "sha256": "72ebf788523bf5893bce87e998bee384c5f9aabca0e1d471a9d6c2541e5a4f90"
+    },
+    {
+      "path": "pom.xml",
+      "sha256": "417f04e8839e02826096c5ae5b6a55c8d96bf9e34defd7409c5d0880941cd771"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "sha256": "5a344ccaa4510752234842e191217a9e549c66b40f938096b79e82fb775c6980"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/ApiGatewayApplication.java",
+      "sha256": "3e0867f0cfe897277f86f5d4a1fe961ece0ac9b039f8efb12af3a4ff7e2fb010"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/HelloController.java",
+      "sha256": "3eca0a6fd86300a4267aa80648b2e420a192a3db4f63a58c5591389c016810ec"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/gateway/GatewayController.java",
+      "sha256": "57e673c6bea85de1a80d6e8c105c3e58e72035c1db0d452016b49b5336373884"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/gateway/GatewayRoutes.java",
+      "sha256": "8ea7da31ca23b5b9efcf87a8e7d3f1563c5824203b52a05f99ccd12178ef2f71"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/gateway/GatewaySecurity.java",
+      "sha256": "f0cb87e674fb20e9cb080b15e6f71749a471f4af8d87b52ead74d98f139aa6f4"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/health/HealthController.java",
+      "sha256": "b9ab9382d55136425181d2adc7895a21fc5e1bc2ca1016d5205857c86881d9e3"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/MetadataServiceCredentials.java",
+      "sha256": "9c7f5e5a9990ef08805ca344091fb446b6766283510743b75cbc0069d712a562"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/ServiceCredentials.java",
+      "sha256": "dfdfc67998564ef5d8d179320844fdc3496ea6d224959cc2b8e92714bd9658a2"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/ServiceHttpClient.java",
+      "sha256": "1b75f43e78061c79fccab2c39fbfbca7f464dcbebd773a57d0ee6e4b203f13b6"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/TransportExceptionHandler.java",
+      "sha256": "a4b936df90bdaacdb59233b8d4fe6e8218b13b6a31869baa90c6edab964c138e"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/transport/UpstreamUnavailableException.java",
+      "sha256": "ae430832030b4f71fde5e83cf9e97a806b04a899c461c696db9d573a133f22bd"
+    },
+    {
+      "path": "src/main/resources/application.properties",
+      "sha256": "99638d06c48f8bf65aa3e39b2f95ad3455231730d07313ac234aa146ac4067db"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/architecture/ServiceArchitectureTest.java",
+      "sha256": "d6d9a127589743627cd9e3fbf7d0b4a1d8a1122e54ddad149717d7b0c87bf8ef"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/gateway/GatewayContextTest.java",
+      "sha256": "63ce741be123b0e0fc675decb947ef4ef408a4dfd0e05268cf614be19b3b3812"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/gateway/GatewayRoutesTest.java",
+      "sha256": "8b3d66d70d4db7a0ed37cf2db9e836b5cc354eb42470dd54f69e2f66f823e6a4"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/transport/ServiceHttpClientTest.java",
+      "sha256": "0e87e2f5a3ea06748ada0d8f526e8f2b0d29895a90fc89b8535bef1fa6de4a4f"
+    }
+  ],
+  "byteIdenticalSourceFiles": [
+    ".dockerignore",
+    ".gitignore",
+    ".mvn/wrapper/maven-wrapper.properties",
+    "Dockerfile",
+    "mvnw",
+    "mvnw.cmd",
+    "package.json",
+    "pom.xml",
+    "scripts/build.mjs",
+    "src/main/java/lt/printerrental/ApiGatewayApplication.java",
+    "src/main/java/lt/printerrental/HelloController.java",
+    "src/main/java/lt/printerrental/gateway/GatewayController.java",
+    "src/main/java/lt/printerrental/gateway/GatewayRoutes.java",
+    "src/main/java/lt/printerrental/gateway/GatewaySecurity.java",
+    "src/main/java/lt/printerrental/health/HealthController.java",
+    "src/main/java/lt/printerrental/transport/MetadataServiceCredentials.java",
+    "src/main/java/lt/printerrental/transport/ServiceCredentials.java",
+    "src/main/java/lt/printerrental/transport/ServiceHttpClient.java",
+    "src/main/java/lt/printerrental/transport/TransportExceptionHandler.java",
+    "src/main/java/lt/printerrental/transport/UpstreamUnavailableException.java",
+    "src/main/resources/application.properties",
+    "src/test/java/lt/printerrental/architecture/ServiceArchitectureTest.java",
+    "src/test/java/lt/printerrental/gateway/GatewayContextTest.java",
+    "src/test/java/lt/printerrental/gateway/GatewayRoutesTest.java",
+    "src/test/java/lt/printerrental/transport/ServiceHttpClientTest.java"
+  ],
+  "executableFiles": [
+    "mvnw"
+  ],
+  "omittedCategories": [
+    "production deployment settings",
+    "private release evidence",
+    "credentials",
+    "private Git history",
+    "publisher credentials and workflow"
+  ]
+}
