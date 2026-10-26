@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "Printerrenta/psi-api-gateway",
-  "sourceCommit": "8a38963eb20693dbec0a515ea63888f33426a4de",
+  "sourceCommit": "d36829dc129c7f255a7ed8b61a159d34315d4d91",
   "sourceBranch": "main",
   "history": "Independent public snapshots; no private Git history",
   "files": [
@@ -15,7 +15,7 @@
     },
     {
       "path": ".github/workflows/verify.yml",
-      "sha256": "a3a3b6cbfe1080862c0587b2b242c08682c6ce8bb6710d99536014fc178d48a5"
+      "sha256": "83cf4a57cbe9f5ffb7bfec62a91283043afdc5288d947867e5061479ee74c613"
     },
     {
       "path": ".gitignore",
@@ -31,7 +31,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "00545edbf92fbed465901f01dab56cddf989e08d4cdf7193acd28b98dc2b413d"
+      "sha256": "ca79c2705da6140b2f8e1579394c3f24df2da08e8a00a43f61f13f7c370491c0"
     },
     {
       "path": "mvnw",
