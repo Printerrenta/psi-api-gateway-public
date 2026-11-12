@@ -26,6 +26,45 @@ class GatewayContextTest {
   lt.printerrental.transport.ServiceHttpClient upstream;
 
   @Test
+  void handlesBrowserPreflightWithoutCallingPrivateService() throws Exception {
+    mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options("/api/contracts")
+        .header("Origin", "http://localhost:5173")
+        .header("Access-Control-Request-Method", "GET")
+        .header("Access-Control-Request-Headers", "authorization,content-type"))
+        .andExpect(status().isOk())
+        .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.header().string("Access-Control-Allow-Origin", "http://localhost:5173"));
+    org.mockito.Mockito.verifyNoInteractions(upstream);
+  }
+
+  @Test
+  void rejectsUnknownOriginsAndBrowserSuppliedCloudCredentials() throws Exception {
+    mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options("/api/contracts")
+        .header("Origin", "https://untrusted.example")
+        .header("Access-Control-Request-Method", "GET"))
+        .andExpect(status().isForbidden());
+    mvc.perform(org.springframework.test.web.servlet.request.MockMvcRequestBuilders.options("/api/contracts")
+        .header("Origin", "http://localhost:5173")
+        .header("Access-Control-Request-Method", "GET")
+        .header("Access-Control-Request-Headers", "x-serverless-authorization"))
+        .andExpect(status().isForbidden());
+    org.mockito.Mockito.verifyNoInteractions(upstream);
+  }
+
+  @Test
+  @SuppressWarnings("unchecked")
+  void preservesApplicationAuthenticationFailuresAndAddsCors() throws Exception {
+    var response=(java.net.http.HttpResponse<byte[]>)org.mockito.Mockito.mock(java.net.http.HttpResponse.class);
+    org.mockito.Mockito.when(response.statusCode()).thenReturn(401);
+    org.mockito.Mockito.when(response.body()).thenReturn("{}".getBytes());
+    org.mockito.Mockito.when(response.headers()).thenReturn(java.net.http.HttpHeaders.of(java.util.Map.of(),(a,b)->true));
+    org.mockito.Mockito.when(upstream.send("http://rental.test", "/api/contracts", "GET", new byte[0], null, null)).thenReturn(response);
+    mvc.perform(get("/api/contracts").header("Origin", "http://localhost:5173"))
+        .andExpect(status().isUnauthorized())
+        .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.header().string("Access-Control-Allow-Origin", "http://localhost:5173"))
+        .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.header().string("Cache-Control", "no-store"));
+  }
+
+  @Test
   @SuppressWarnings("unchecked")
   void forwardsMultipartBytesWithoutConsumingTheFile() throws Exception {
     var response =

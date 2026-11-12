@@ -53,12 +53,9 @@ public class GatewayController {
             "Content-Disposition",
             "Location",
             "X-Content-Type-Options",
-            "WWW-Authenticate",
-            "Access-Control-Allow-Origin",
-            "Access-Control-Allow-Methods",
-            "Access-Control-Allow-Headers",
-            "Access-Control-Expose-Headers",
-            "Vary")) response.headers().firstValue(header).ifPresent(v -> result.header(header, v));
+            "WWW-Authenticate")) response.headers().firstValue(header).ifPresent(v -> result.header(header, v));
+    // CORS is owned by the gateway. Do not cache user-specific API responses.
+    result.header("Cache-Control", "no-store");
     return result.body(response.body());
   }
 }

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "Printerrenta/psi-api-gateway",
-  "sourceCommit": "d36829dc129c7f255a7ed8b61a159d34315d4d91",
+  "sourceCommit": "6b7d8b30e4931b306fed0d35b92519b43f35b564",
   "sourceBranch": "main",
   "history": "Independent public snapshots; no private Git history",
   "files": [
@@ -63,7 +63,7 @@
     },
     {
       "path": "src/main/java/lt/printerrental/gateway/GatewayController.java",
-      "sha256": "57e673c6bea85de1a80d6e8c105c3e58e72035c1db0d452016b49b5336373884"
+      "sha256": "1e86abf40f48a49c96e410851eee8613e2570ba2a8c4c3eaa72eb92a28f7e301"
     },
     {
       "path": "src/main/java/lt/printerrental/gateway/GatewayRoutes.java",
@@ -71,7 +71,7 @@
     },
     {
       "path": "src/main/java/lt/printerrental/gateway/GatewaySecurity.java",
-      "sha256": "f0cb87e674fb20e9cb080b15e6f71749a471f4af8d87b52ead74d98f139aa6f4"
+      "sha256": "caec02ec7a3b711d2f2a0b25afa626b59c210775da087283e678c521592a027a"
     },
     {
       "path": "src/main/java/lt/printerrental/health/HealthController.java",
@@ -107,7 +107,7 @@
     },
     {
       "path": "src/test/java/lt/printerrental/gateway/GatewayContextTest.java",
-      "sha256": "63ce741be123b0e0fc675decb947ef4ef408a4dfd0e05268cf614be19b3b3812"
+      "sha256": "741e13886e2890c85f15c5fad1756ff39b2318ce916a317a7ab421436aec0004"
     },
     {
       "path": "src/test/java/lt/printerrental/gateway/GatewayRoutesTest.java",
