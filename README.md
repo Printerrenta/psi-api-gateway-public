@@ -8,6 +8,16 @@ have separate PostgreSQL databases and restricted credentials; the gateway has n
 Controllers delegate use cases, domain objects enforce invariants, and HTTP/JDBC/JPA
 adapters implement local ports. Business models and SQL are not shared between services.
 
+## Routing and authentication
+
+- Browser requests use an application user JWT in the Authorization header.
+- The gateway adds its service identity when calling private domain services;
+  browsers do not receive that identity token.
+- Contract attachment routes go to the document service, not the rental service.
+- Internal event and outbox routes are not exposed through public API routing.
+- Responses containing business data use no-store caching; browser origins are
+  configured explicitly at the gateway.
+
 ## Build and test
 
 ```sh

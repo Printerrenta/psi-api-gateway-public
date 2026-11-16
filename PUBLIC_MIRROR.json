@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "Printerrenta/psi-api-gateway",
-  "sourceCommit": "6b7d8b30e4931b306fed0d35b92519b43f35b564",
+  "sourceCommit": "bddeae0a2903d2f1f9a1506b2a665b131827d602",
   "sourceBranch": "main",
   "history": "Independent public snapshots; no private Git history",
   "files": [
@@ -31,7 +31,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "ca79c2705da6140b2f8e1579394c3f24df2da08e8a00a43f61f13f7c370491c0"
+      "sha256": "cce770228f090a4ac14a0274b89f9a62d6db1184c4913c45986469378d339b61"
     },
     {
       "path": "mvnw",
