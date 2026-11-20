@@ -7,14 +7,18 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.filter.CorsFilter;
 import java.util.Arrays;
 import java.util.List;
 
 @Configuration
 public class GatewaySecurity {
   @Bean
-  SecurityFilterChain gatewayFilterChain(HttpSecurity http,
-      @Value("${GATEWAY_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}") String origins) throws Exception {
+  SecurityFilterChain gatewayFilterChain(
+      HttpSecurity http,
+      @Value("${GATEWAY_ALLOWED_ORIGINS:http://localhost:5173,http://127.0.0.1:5173}") String origins,
+      @Value("${GATEWAY_RATE_LIMIT_PER_MINUTE:600}") int rateLimitPerMinute)
+      throws Exception {
     var cors = new CorsConfiguration();
     var allowed = Arrays.stream(origins.split(",")).map(String::strip).filter(s -> !s.isBlank()).toList();
     if (allowed.isEmpty() || allowed.stream().anyMatch(s -> s.contains("*")))
@@ -27,8 +31,10 @@ public class GatewaySecurity {
     cors.setMaxAge(600L);
     var source = new UrlBasedCorsConfigurationSource();
     source.registerCorsConfiguration("/api/**", cors);
-    return http.cors(c -> c.configurationSource(source)).csrf(c -> c.disable())
+    return http.cors(c -> c.configurationSource(source))
+        .csrf(c -> c.disable())
         .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+        .addFilterAfter(new GatewayRateLimitFilter(rateLimitPerMinute), CorsFilter.class)
         .authorizeHttpRequests(
             a ->
                 a.dispatcherTypeMatchers(jakarta.servlet.DispatcherType.ERROR)

@@ -53,15 +53,32 @@ class GatewayContextTest {
   @Test
   @SuppressWarnings("unchecked")
   void preservesApplicationAuthenticationFailuresAndAddsCors() throws Exception {
-    var response=(java.net.http.HttpResponse<byte[]>)org.mockito.Mockito.mock(java.net.http.HttpResponse.class);
+    var response =
+        (java.net.http.HttpResponse<byte[]>)
+            org.mockito.Mockito.mock(java.net.http.HttpResponse.class);
     org.mockito.Mockito.when(response.statusCode()).thenReturn(401);
     org.mockito.Mockito.when(response.body()).thenReturn("{}".getBytes());
-    org.mockito.Mockito.when(response.headers()).thenReturn(java.net.http.HttpHeaders.of(java.util.Map.of(),(a,b)->true));
-    org.mockito.Mockito.when(upstream.send("http://rental.test", "/api/contracts", "GET", new byte[0], null, null)).thenReturn(response);
-    mvc.perform(get("/api/contracts").header("Origin", "http://localhost:5173"))
-        .andExpect(status().isUnauthorized())
-        .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.header().string("Access-Control-Allow-Origin", "http://localhost:5173"))
-        .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.header().string("Cache-Control", "no-store"));
+    org.mockito.Mockito.when(response.headers())
+        .thenReturn(
+            java.net.http.HttpHeaders.of(
+                java.util.Map.of("X-Content-Type-Options", java.util.List.of("nosniff")),
+                (a, b) -> true));
+    org.mockito.Mockito.when(
+            upstream.send("http://rental.test", "/api/contracts", "GET", null, null, null))
+        .thenReturn(response);
+    var mvcResult =
+        mvc.perform(get("/api/contracts").header("Origin", "http://localhost:5173"))
+            .andExpect(status().isUnauthorized())
+            .andExpect(
+                org.springframework.test.web.servlet.result.MockMvcResultMatchers.header()
+                    .string("Access-Control-Allow-Origin", "http://localhost:5173"))
+            .andExpect(
+                org.springframework.test.web.servlet.result.MockMvcResultMatchers.header()
+                    .string("Cache-Control", "no-store"))
+            .andReturn();
+    org.assertj.core.api.Assertions.assertThat(
+            mvcResult.getResponse().getHeaders("X-Content-Type-Options"))
+        .containsExactly("nosniff");
   }
 
   @Test
@@ -117,5 +134,17 @@ class GatewayContextTest {
     mvc.perform(get("/health")).andExpect(status().isOk());
     mvc.perform(get("/api/unknown")).andExpect(status().isNotFound());
     mvc.perform(get("/internal/events")).andExpect(status().isForbidden());
+  }
+
+  @Test
+  void rejectsRequestBodyLargerThanSixMegabytes() throws Exception {
+    byte[] oversized = new byte[6 * 1024 * 1024 + 1];
+    mvc.perform(
+            org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post(
+                    "/api/contracts")
+                .contentType("application/octet-stream")
+                .content(oversized))
+        .andExpect(status().is(413));
+    org.mockito.Mockito.verifyNoInteractions(upstream);
   }
 }

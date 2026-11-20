@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GatewayController {
+  private static final int MAX_REQUEST_BYTES = 6 * 1024 * 1024;
+
   private final GatewayRoutes routes;
   private final ServiceHttpClient client;
   private final boolean maintenance;
@@ -28,13 +30,27 @@ public class GatewayController {
     return Map.of("service", "printer-rental-gateway", "health", "/health");
   }
 
-  @RequestMapping("/api/**")
+  @RequestMapping(
+      path = "/api/**",
+      method = {
+        RequestMethod.GET,
+        RequestMethod.POST,
+        RequestMethod.PATCH,
+        RequestMethod.PUT,
+        RequestMethod.DELETE
+      })
   public ResponseEntity<byte[]> forward(HttpServletRequest request) throws IOException {
     if (maintenance) return ResponseEntity.status(503).header("Retry-After", "60").build();
     var destination = routes.destination(request.getRequestURI());
     if (destination == null) return ResponseEntity.notFound().build();
-    var body = request.getInputStream().readNBytes(6 * 1024 * 1024 + 1);
-    if (body.length > 6 * 1024 * 1024) return ResponseEntity.status(413).build();
+    if (request.getContentLengthLong() > MAX_REQUEST_BYTES) return ResponseEntity.status(413).build();
+    var rawBody = request.getInputStream().readNBytes(MAX_REQUEST_BYTES + 1);
+    if (rawBody.length > MAX_REQUEST_BYTES) return ResponseEntity.status(413).build();
+    var method = request.getMethod();
+    var body =
+        rawBody.length == 0 && ("GET".equalsIgnoreCase(method) || "HEAD".equalsIgnoreCase(method))
+            ? null
+            : rawBody;
     var path =
         request.getRequestURI()
             + (request.getQueryString() == null ? "" : "?" + request.getQueryString());
@@ -42,18 +58,14 @@ public class GatewayController {
         client.send(
             destination,
             path,
-            request.getMethod(),
+            method,
             body,
             request.getContentType(),
             request.getHeader("Authorization"));
     var result = ResponseEntity.status(response.statusCode());
     for (var header :
-        List.of(
-            "Content-Type",
-            "Content-Disposition",
-            "Location",
-            "X-Content-Type-Options",
-            "WWW-Authenticate")) response.headers().firstValue(header).ifPresent(v -> result.header(header, v));
+        List.of("Content-Type", "Content-Disposition", "Location", "WWW-Authenticate"))
+      response.headers().firstValue(header).ifPresent(v -> result.header(header, v));
     // CORS is owned by the gateway. Do not cache user-specific API responses.
     result.header("Cache-Control", "no-store");
     return result.body(response.body());

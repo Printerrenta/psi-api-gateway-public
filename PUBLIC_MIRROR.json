@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "sourceRepository": "Printerrenta/psi-api-gateway",
-  "sourceCommit": "bddeae0a2903d2f1f9a1506b2a665b131827d602",
+  "sourceCommit": "c2ddd1f490aea7d4c7328c5030263932352289c6",
   "sourceBranch": "main",
   "history": "Independent public snapshots; no private Git history",
   "files": [
@@ -63,7 +63,11 @@
     },
     {
       "path": "src/main/java/lt/printerrental/gateway/GatewayController.java",
-      "sha256": "1e86abf40f48a49c96e410851eee8613e2570ba2a8c4c3eaa72eb92a28f7e301"
+      "sha256": "c201bf1061b49c244cc20cae53b2896cfe5eb20dbf2d7d5078afd0aa4be79c60"
+    },
+    {
+      "path": "src/main/java/lt/printerrental/gateway/GatewayRateLimitFilter.java",
+      "sha256": "ecd8b965ff0af02acda81446aa667d67f5b8bdc1f5795ff8595994a2d828fe5d"
     },
     {
       "path": "src/main/java/lt/printerrental/gateway/GatewayRoutes.java",
@@ -71,7 +75,7 @@
     },
     {
       "path": "src/main/java/lt/printerrental/gateway/GatewaySecurity.java",
-      "sha256": "caec02ec7a3b711d2f2a0b25afa626b59c210775da087283e678c521592a027a"
+      "sha256": "86b0d7973d251a0ccae7bf454f136a1dd6aaad01b64dc2051ed4d7d176ed7efe"
     },
     {
       "path": "src/main/java/lt/printerrental/health/HealthController.java",
@@ -79,7 +83,7 @@
     },
     {
       "path": "src/main/java/lt/printerrental/transport/MetadataServiceCredentials.java",
-      "sha256": "9c7f5e5a9990ef08805ca344091fb446b6766283510743b75cbc0069d712a562"
+      "sha256": "be108ff4458f50fe77f9ef2efc4b35b2d5296c0503b9da125188664fef9371f4"
     },
     {
       "path": "src/main/java/lt/printerrental/transport/ServiceCredentials.java",
@@ -87,7 +91,7 @@
     },
     {
       "path": "src/main/java/lt/printerrental/transport/ServiceHttpClient.java",
-      "sha256": "1b75f43e78061c79fccab2c39fbfbca7f464dcbebd773a57d0ee6e4b203f13b6"
+      "sha256": "007f772f2b343b5d86c9643b07f50aaba7b47c3b7559909274fc28d43540185c"
     },
     {
       "path": "src/main/java/lt/printerrental/transport/TransportExceptionHandler.java",
@@ -107,7 +111,19 @@
     },
     {
       "path": "src/test/java/lt/printerrental/gateway/GatewayContextTest.java",
-      "sha256": "741e13886e2890c85f15c5fad1756ff39b2318ce916a317a7ab421436aec0004"
+      "sha256": "2a2bd14f145ce34b35d438618f7dac19397ccd931527125840aab6757e456e73"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/gateway/GatewayMaintenanceTest.java",
+      "sha256": "0450d640fe2279454c06a4873dfd6773ede2ceca41c1c191f3f3bb95e5b03af6"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/gateway/GatewayRateLimitFilterTest.java",
+      "sha256": "13e21cf6667a79b38612a096e15c1fd40fd6eb37be0ccec482933672bf6b70f2"
+    },
+    {
+      "path": "src/test/java/lt/printerrental/gateway/GatewayRateLimitTest.java",
+      "sha256": "7d37fabacb040938f3fd3f6541f02da6578123d22be5476d1efbd3197d167476"
     },
     {
       "path": "src/test/java/lt/printerrental/gateway/GatewayRoutesTest.java",
@@ -115,7 +131,7 @@
     },
     {
       "path": "src/test/java/lt/printerrental/transport/ServiceHttpClientTest.java",
-      "sha256": "0e87e2f5a3ea06748ada0d8f526e8f2b0d29895a90fc89b8535bef1fa6de4a4f"
+      "sha256": "ae31e48afc040427ee2696799976704b0bca019df3dfc476121b0373f67ef9d7"
     }
   ],
   "byteIdenticalSourceFiles": [
@@ -131,6 +147,7 @@
     "src/main/java/lt/printerrental/ApiGatewayApplication.java",
     "src/main/java/lt/printerrental/HelloController.java",
     "src/main/java/lt/printerrental/gateway/GatewayController.java",
+    "src/main/java/lt/printerrental/gateway/GatewayRateLimitFilter.java",
     "src/main/java/lt/printerrental/gateway/GatewayRoutes.java",
     "src/main/java/lt/printerrental/gateway/GatewaySecurity.java",
     "src/main/java/lt/printerrental/health/HealthController.java",
@@ -142,6 +159,9 @@
     "src/main/resources/application.properties",
     "src/test/java/lt/printerrental/architecture/ServiceArchitectureTest.java",
     "src/test/java/lt/printerrental/gateway/GatewayContextTest.java",
+    "src/test/java/lt/printerrental/gateway/GatewayMaintenanceTest.java",
+    "src/test/java/lt/printerrental/gateway/GatewayRateLimitFilterTest.java",
+    "src/test/java/lt/printerrental/gateway/GatewayRateLimitTest.java",
     "src/test/java/lt/printerrental/gateway/GatewayRoutesTest.java",
     "src/test/java/lt/printerrental/transport/ServiceHttpClientTest.java"
   ],
